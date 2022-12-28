@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 if [ ! -d ~/bash_db_engine ]
 then
