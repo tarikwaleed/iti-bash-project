@@ -96,7 +96,7 @@ $(blueprint '\t\t*********** DATABASE MENU ***********')
     1)
         clear 
         
-        . ./menu.sh
+        ./create_database.sh
         ;;
     2)
         clear
