@@ -19,6 +19,17 @@ function validate_user_input() {
 
     return 1
 }
+function touch_file() {
+    table_name=$1
+    if [[ -f $table_name ]]; then
+        return 0
+
+    else
+        touch $table_name
+        return 1
+    fi
+
+}
 
 echo "Enter Table name: "
 read table_name
@@ -26,10 +37,11 @@ validate_user_input $table_name
 table_name_is_valid=$?
 
 if [[ table_name_is_valid -eq 1 ]]; then
-    if [[ -f $table_name ]]; then
-        echo "file exists"
+    touch_file $table_name
+    file_touched_successfully=$?
+    if [[ file_touched_successfully -eq 1 ]]; then
+        echo "file touched successfully"
     else
-        touch $table_name
-        echo "$table_name created successfully"
+        echo "file already exists"
     fi
 fi
