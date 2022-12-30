@@ -4,7 +4,7 @@ function validate_user_input() {
     user_input=$@
     first_character_in_input=${user_input:0:1}
     if [[ $# -gt 1 ]]; then
-        echo "table name cann't have spaces"
+        echo "table/column name cann't have spaces"
         return 0
     fi
 
@@ -13,7 +13,7 @@ function validate_user_input() {
         return 0
     fi
     if [[ $first_character_in_input =~ [0-9] ]]; then
-        echo "table name cann't start with number"
+        echo "table/column name cann't start with number"
         return 0
     fi
 
@@ -25,7 +25,8 @@ function touch_file() {
         return 0
 
     else
-        touch $table_name
+        touch $table_name.data
+        touch $table_name.metadata
         return 1
     fi
 
