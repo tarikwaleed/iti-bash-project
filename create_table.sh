@@ -20,11 +20,16 @@ function validate_user_input() {
     return 1
 }
 
-while :
-do
-    echo "Enter Table name: "
-    read table_name
-    validate_user_input $table_name
-    returnvalue=$?
-    echo $returnvalue
-done
+echo "Enter Table name: "
+read table_name
+validate_user_input $table_name
+table_name_is_valid=$?
+
+if [[ table_name_is_valid -eq 1 ]]; then
+    if [[ -f $table_name ]]; then
+        echo "file exists"
+    else
+        touch $table_name
+        echo "$table_name created successfully"
+    fi
+fi
