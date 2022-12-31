@@ -41,7 +41,7 @@ $(blueprint '\t\t*********** DATABASE MENU ***********')
         ;;
     *)
         clear
-        fn_fail
+        . ./database_menu.sh
         ;;
     esac
 }

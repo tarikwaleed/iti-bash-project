@@ -11,7 +11,8 @@ if [[  -d $database_name ]]; then
 		echo -e "Press any key to continue"
 		read -s -n1  cont
 		case $cont in
-    		 *) . ../table_menu.sh;;
+    		 *) cd .. 
+			 . ./table_menu.sh;;
  		esac
 #If the user pressed ESCAPE then press any key to back to database menu.
 elif [ $database_name ==  $'\e' ]; then

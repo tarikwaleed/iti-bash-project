@@ -2,6 +2,8 @@
 source ./colors.sh
 clear
 
+
+
 table_menu() {
     echo -ne "
 $(yellowprint '\t\t*********** table_menu ***********')
@@ -18,8 +20,9 @@ $(yellowprint '\t\t*********** table_menu ***********')
     read -r ans
     case $ans in
     1)
-        clear
-        .. ./create_table.sh
+
+        pwd
+        . ./create_table.sh     
         ;;
     2)
         clear
@@ -60,7 +63,7 @@ $(yellowprint '\t\t*********** table_menu ***********')
         ;;
     *)
     clear
-        fn_fail
+        . ./table_menu.sh
         ;;
     esac
 }

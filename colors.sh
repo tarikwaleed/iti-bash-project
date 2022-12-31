@@ -17,3 +17,4 @@ db_created() { echo; echo "DataBase created"; }
 db_connected() { echo; echo "Connected to DataBase."; }
 fn_bye() { echo "Bye bye."; exit 0; }
 fn_fail() { echo "Wrong option."; exit 1; }
+back_to(){ cd .. ;}

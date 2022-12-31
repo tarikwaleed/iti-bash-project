@@ -5,14 +5,15 @@ source ./colors.sh
 clear
 
 mainmenu() {
-  echo -e  "\n"              
+ echo -e  "\n"              
   echo -e  "\n"              
   echo -e  "$(greenprint  ' \t\t     *   *   *  ******  *    *****    *****   *     *  ****** ' )"  
-  echo -e  "$(greenprint  ' \t\t     *   *   *  *       *    *       *     *  **   **  *      ' )" 
-  echo -e  "$(greenprint  ' \t\t     *  * *  *  ******  *    *       *     *  * * * *  ****** ' )"
-  echo -e  "$(greenprint  ' \t\t     * *   * *  *       *    *       *     *  *  *  *  *      ' )" 
-  echo -e  "$(greenprint  ' \t\t     *       *  ******  ***  *****    *****   *     *  ****** ' )"
+  echo -e  "$(redprint  ' \t\t     *   *   *  *       *    *       *     *  **   **  *      ' )" 
+  echo -e  "$(blueprint  ' \t\t     *  * *  *  ******  *    *       *     *  * * * *  ****** ' )"
+  echo -e  "$(yellowprint  ' \t\t     * *   * *  *       *    *       *     *  *  *  *  *      ' )" 
+  echo -e  "$(cyanprint  ' \t\t     *       *  ******  ***  *****    *****   *     *  ****** ' )"
   echo -e  "\n" 
+
  
 
 echo -ne "
