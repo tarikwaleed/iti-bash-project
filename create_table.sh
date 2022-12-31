@@ -114,16 +114,13 @@ function main_logic() {
                     fi
                 done
                 #? is_primary_key
-                column_is_primary_key=0
-                if [[ primary_key_determined -eq 0 ]]; then
-                    echo "Is this column  a primary key: (y/n)"
-                    read is_primary_key_choice
-                    if [[ is_primary_key_choice == 'y' || is_primary_key_choice == 'Y' ]]; then
-                        primary_key_determined=1
-                        column_is_primary_key=1
-                    fi
-                    echo $name_of_column:$column_type:$column_is_primary_key
+                is_primary_key="n"
+                echo "is primary key (y/n)"
+                read input
+                if [[ $input == "y" ]]; then
+                    is_primary_key="y"
                 fi
+                echo $name_of_column:$column_type:$is_primary_key >> $table_name.metadata
 
                 count=$(($count + 1))
             done
