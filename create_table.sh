@@ -120,8 +120,8 @@ function main_logic() {
                 if [[ $input == "y" ]]; then
                     is_primary_key="y"
                 fi
-                echo $name_of_column:$column_type:$is_primary_key >> $table_name.metadata
-
+                #? append the collected data in the metadata file of the table
+                echo $name_of_column:$column_type:$is_primary_key >>$table_name.metadata
                 count=$(($count + 1))
             done
 
