@@ -79,7 +79,6 @@ function main_logic() {
             while [[ number_of_columns_is_valid -eq 0 ]]; do
                 echo "Enter number of columns in the table:"
                 read number_of_columns
-                #TODO: create this function
                 validate_number_of_columns $number_of_columns
                 number_of_columns_is_valid=$?
                 if [[ number_of_columns_is_valid -eq 0 ]]; then
