@@ -1,4 +1,4 @@
-col1:i:y
-col2:s:n
-col3:s:n
-col4:s:n
+id:i:y
+name:s:n
+email:s:n
+address:s:n

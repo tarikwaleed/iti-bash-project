@@ -41,10 +41,25 @@ function get_columns_metadata() {
         all_columns_keys+=($column_key)
         count=$(($count + 1))
     done
+    row_data=()
     for column_name in ${all_columns_names[@]}; do
-        echo "Enter Data for column ${column_name}"
-
+        column_index=$(get_column_index_by_column_name $column_name)
+        column_type=$(get_column_type_by_index $column_index)
+        valid_input=0
+        while [[ ! valid_input ]]; do
+            echo "Enter Data for column ${column_name} of type ${column_type}"
+            read column_data
+            if [[ $column_type == 'i' ]]; then
+                if [[ ! $column_data =~ ^[0-9]+$ ]]; then
+                    echo "Invalid input, provided data should be of type integer"
+                    valid_input=0
+                fi
+            fi
+        done
+        row_data+=($column_data)
     done
+
+    echo ${row_data[@]}
 
 }
 
