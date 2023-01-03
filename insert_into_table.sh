@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#if [[ ! "$database_name" =~  ^[[:alpha:]][[:alnum:]]*$  ]]
 function get_number_of_columns() {
     result=$(wc -l $1.metadata | cut -d ' ' -f 1)
     echo $result
@@ -45,17 +46,36 @@ function get_columns_metadata() {
     for column_name in ${all_columns_names[@]}; do
         column_index=$(get_column_index_by_column_name $column_name)
         column_type=$(get_column_type_by_index $column_index)
-        valid_input=0
-        while [[ ! valid_input ]]; do
+        declare -i valid_input=0
+        while [[ $valid_input -eq 0 ]]; do
             echo "Enter Data for column ${column_name} of type ${column_type}"
             read column_data
             if [[ $column_type == 'i' ]]; then
                 if [[ ! $column_data =~ ^[0-9]+$ ]]; then
                     echo "Invalid input, provided data should be of type integer"
                     valid_input=0
+                else
+                    valid_input=1
                 fi
+            elif [[ $column_type == 's' ]]; then
+                if [[ $column_name = 'email' ]]; then
+                    if [[ ! $column_data =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ ]]; then
+                        echo "Invalid email format"
+                        valid_input=0
+                    else
+                        valid_input=1
+                    fi
+
+                elif [[ ! $column_data =~ ^[[:alpha:]][[:alnum:]]*$ ]]; then
+                    echo "Invalid input, provided data should be of type string"
+                    valid_input=0
+                else
+                    valid_input=1
+                fi
+
             fi
         done
+
         row_data+=($column_data)
     done
 
