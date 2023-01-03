@@ -18,7 +18,7 @@ $(yellowprint '\t\t*********** table_menu ***********')
     case $ans in
     1)
         clear
-        . ./create_table.sh     
+        . create_table.sh     
         ;;
     2)
         clear
@@ -30,28 +30,28 @@ $(yellowprint '\t\t*********** table_menu ***********')
         ;;
     3)
         clear
-        . ./insert_into_table ### not finished
+        . insert_into_table ### not finished
         ;;
     4)
         clear
-        . ./update_table.sh ### not finished
+        . update_table.sh ### not finished
         ;;
     5)
         clear
-        . ./drop_table.sh ### not finished
+        . drop_table.sh ### not finished
         ;;
     6)
         clear
-        . ./select_from_table.sh #where conditon not finished
+        . select_from_table.sh #where conditon not finished
         table_menu
         ;;
     7)
         clear
-        . ./database_menu.sh
+        . database_menu.sh
         ;;
     8)
         clear
-        . ./main_menu.sh
+        . main_menu.sh
         ;;
     0)
         clear

@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+
 function validate_user_input() {
     #? the input doesn't include spaces because we are taking the first argumet
     #? passed to the function
@@ -21,7 +24,7 @@ function validate_user_input() {
 }
 function touch_file() {
     table_name=$1
-    if [[ -f $table_name ]]; then
+    if [[ -f $database_name/$table_name ]]; then
         return 0
 
     else
@@ -71,7 +74,8 @@ function main_logic() {
         fi
     done
     if [[ table_name_is_valid -eq 1 ]]; then
-        touch_file $table_name
+        touch_file $database_name/$table_name
+        #/$database_name
         file_touched_successfully=$?
         if [[ file_touched_successfully -eq 1 ]]; then
             echo "file touched successfully"
