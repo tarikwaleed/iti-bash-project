@@ -47,10 +47,12 @@ function main_logic() {
     for column_name in ${all_columns_names[@]}; do
         column_index=$(get_column_index_by_column_name $column_name)
         column_type=$(get_column_type_by_index $column_index)
+        is_primary_key=${all_columns_keys[$column_index]}
         declare -i valid_input=0
         while [[ $valid_input -eq 0 ]]; do
             echo "Enter Data for column ${column_name} of type ${column_type}"
             read column_data
+
             if [[ $column_type == 'i' ]]; then
                 if [[ ! $column_data =~ ^[0-9]+$ ]]; then
                     echo "Invalid input, provided data should be of type integer"
@@ -85,7 +87,6 @@ function main_logic() {
     final_record=${temp// /:}
     echo $final_record >>$data_file
     echo "Row inserted successfully"
-
 }
 
 main_logic $1
