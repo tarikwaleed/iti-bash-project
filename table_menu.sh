@@ -7,11 +7,10 @@ $(yellowprint '\t\t*********** table_menu ***********')
 \n$(redprint '\t\t\t1)') CREATE TABLE
 \n$(blueprint '\t\t\t2)') SHOW TABLES
 \n$(greenprint '\t\t\t3)') INSERT INTO TABLE
-\n$(redprint '\t\t\t4)') UPDATE TABLE
-\n$(blueprint '\t\t\t5)') DROP TABLE
-\n$(greenprint '\t\t\t6)') SELECT FROM TABLE
-\n$(blueprint '\t\t\t7)') Go Back to DATABASE MENU
-\n$(magentaprint '\t\t\t8)') Go Back to MAIN MENU
+\n$(blueprint '\t\t\t4)') DROP TABLE
+\n$(greenprint '\t\t\t5)') SELECT FROM TABLE
+\n$(blueprint '\t\t\t6)') Go Back to DATABASE MENU
+\n$(magentaprint '\t\t\t7)') Go Back to MAIN MENU
 \n$(redprint '\t\t\t0)') Exit
 \n\t\t\tChoose an option:  "
     read -r ans
@@ -30,26 +29,23 @@ $(yellowprint '\t\t*********** table_menu ***********')
         ;;
     3)
         clear
-        . insert_into_table ### not finished
+        . insert_into_table 
         ;;
+    
     4)
         clear
-        . update_table.sh ### not finished
+        . drop_table.sh
         ;;
     5)
         clear
-        . drop_table.sh ### not finished
+        . select_from_table.sh 
+        table_menu
         ;;
     6)
         clear
-        . select_from_table.sh #where conditon not finished
-        table_menu
-        ;;
-    7)
-        clear
         . database_menu.sh
         ;;
-    8)
+    7)
         clear
         . main_menu.sh
         ;;
