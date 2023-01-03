@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-
 source ./colors.sh
 
 clear
-
-mainmenu() {
- echo -e  "\n"              
+main_menu() {
+  echo -e  "\n"              
   echo -e  "\n"              
   echo -e  "$(greenprint  ' \t\t     *   *   *  ******  *    *****    *****   *     *  ****** ' )"  
   echo -e  "$(redprint  ' \t\t     *   *   *  *       *    *       *     *  **   **  *      ' )" 
@@ -13,7 +11,6 @@ mainmenu() {
   echo -e  "$(yellowprint  ' \t\t     * *   * *  *       *    *       *     *  *  *  *  *      ' )" 
   echo -e  "$(cyanprint  ' \t\t     *       *  ******  ***  *****    *****   *     *  ****** ' )"
   echo -e  "\n" 
-
  
 
 echo -ne "
@@ -41,5 +38,9 @@ echo -ne "
         . ./main_menu.sh
         ;; 
     esac
+
+
+    
 }
-mainmenu
+main_menu
+

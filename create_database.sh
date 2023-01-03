@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 source ./colors.sh
 
+
+connected_successfully()
+{
+     echo -e $(yellowprint "You have connected to '$database_name' database successfully.")
+echo -e "Press any key to continue"
+read -s -n1  cont
+	case $cont in
+    	*) ../table_menu.sh;;
+ 	esac 
+}
+
+
 #Enter name of database and check if it exists.
 
 echo -e $(blueprint "Enter Database Name to Create: ")
@@ -12,23 +24,27 @@ if [[  -d $database_name ]]; then
     . ./create_database.sh
 
 
-#If database's name entered doesn't exist then create database.
+#If database name entered doesn't exist then create database.
 else
     mkdir $database_name
     echo -e $(yellowprint "Your DataBase $database_name sucessfully created")
     echo -ne $(blueprint "Would you like to connect to $database_name DataBase?
     press (y) to connect Or any key to go back : ")
     read confirmation
-    if [ $confirmation == 'y' ]; 
-    then
+
+    case $confirmation in
+
+    'y')
+        clear
         cd $database_name
-        echo -e $(yellowprint "You have connected to '$database_name' database successfully.")
-		echo -e "Press any key to continue"
-		read -s -n1  cont
-		case $cont in
-    		 *)back ../table_menu.sh;;
- 		esac
-    else 
+        connected_successfully
+        ;;
+    'Y')
+        clear
+        cd $database_name
+        connected_successfully
+        ;;
+    *)back 
     . ./database_menu.sh
-    fi
+ 	esac
 fi
