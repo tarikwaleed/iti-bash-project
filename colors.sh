@@ -15,3 +15,14 @@ magentaprint() { printf "${MAGENTA}%s${RESET}\n" "$1"; }
 cyanprint() { printf "${CYAN}%s${RESET}\n" "$1"; }
 fn_bye() { echo "Bye bye."; sleep 0.6; exit 0; }
 back_to(){ cd .. ;}
+
+### Fuctions used in project
+#Show all columns from table
+function show_all_data { column -t -s ":" $database_name/$table_name.data;}
+
+#Show specific column --not working yet
+#function show_specific_column { column -t -s ":" $column_name | awk '{print $col}' ;}
+function show_specific_column { column -t -s ":" $columnrecord ;}
+
+#column -t -s ":"  salama.data | awk '{print $2}' 
+

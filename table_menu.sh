@@ -17,37 +17,37 @@ $(yellowprint '\t\t*********** table_menu ***********')
     case $ans in
     1)
         clear
-        . create_table.sh     
+        . ./create_table.sh     
         ;;
     2)
         clear
         echo "Show tables in selected databse"
-        tables_number=$(ls -p *.data | grep -v / | wc -w)
-        tables_found=$(ls -p  *.data| grep -v / | column)
+        tables_number=$(ls -p $database_name/*.data | grep -v / | wc -w)
+        tables_found=$(ls -p  $database_name/*.data | grep -v / | column)
         printf "\n$tables_number\n"
         printf "\n$tables_found\n\n"
         ;;
     3)
         clear
-        . insert_into_table 
+        . ./insert_into_table.sh 
         ;;
     
     4)
         clear
-        . drop_table.sh
+        . ./drop_table.sh
         ;;
     5)
         clear
+        pwd
         . select_from_table.sh 
-        table_menu
         ;;
     6)
         clear
-        . database_menu.sh
+        . ./database_menu.sh
         ;;
     7)
         clear
-        . main_menu.sh
+        . ./main_menu.sh
         ;;
     0)
         clear

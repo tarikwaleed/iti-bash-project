@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+source ./colors.sh
+
 #if [[ ! "$database_name" =~  ^[[:alpha:]][[:alnum:]]*$  ]]
 function get_number_of_columns() {
     result=$(wc -l $1.metadata | cut -d ' ' -f 1)

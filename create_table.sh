@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ./colors.sh
 
 
 function validate_user_input() {

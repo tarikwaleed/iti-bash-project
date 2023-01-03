@@ -1,14 +1,13 @@
 #!/bin/bash
-source ./functions.sh
+source ./colors.sh
 
 select_menu() {
         echo -ne "
 $(yellowprint '\t\t\t*********** select_menu ***********')
 \n$(redprint '\t\t\t1)') SELECT ALL DATA FROM TABLE
 \n$(blueprint '\t\t\t2)') SELECT SPECIFIC COLUMN
-\n$(greenprint '\t\t\t3)') 
-\n$(blueprint '\t\t\t4)') Go Back to TABLE MENU
-\n$(magentaprint '\t\t\t5)') Go Back to MAIN MENU
+\n$(blueprint '\t\t\t3)') Go Back to TABLE MENU
+\n$(magentaprint '\t\t\t4)') Go Back to MAIN MENU
 \n$(redprint '\t\t\t0)') Exit
 \n\t\t\tChoose an option:  "
         read select_menu
@@ -19,9 +18,11 @@ $(yellowprint '\t\t\t*********** select_menu ***********')
                 table_name=$(zenity --entry --title="Enter table name")
                 for f in *.data; do
                         #if table name exists then show all its data
-                        if [ -f "$table_name.data" ]; then
+                        if [ -f "$database_name/$table_name.data" ]; then
                                 clear
                                 show_all_data
+                                sleep 2
+                                . ./table_menu.sh
                         else
                                 #if table name does not exist then go back to select menu
                                 zenity --error --title="Error" --text="$table_name.data does not exist" --no-wrap
@@ -77,14 +78,10 @@ $(yellowprint '\t\t\t*********** select_menu ***********')
                 ;;
 
         3)
-                echo "Select using Where Condition"
-                . ./select_menu.sh
-                ;;
-        4)
                 echo "Back to Table Menu"
                 . ./table_menu.sh
                 ;;
-        5)
+        4)
                 echo "Back to Main Menu"
                 cd ..
                 . ./main_menu.sh
