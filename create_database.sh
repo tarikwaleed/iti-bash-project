@@ -1,50 +1,49 @@
 #!/usr/bin/env bash
 source ./colors.sh
 
-
-connected_successfully()
-{
-     echo -e $(yellowprint "You have connected to '$database_name' database successfully.")
-echo -e "Press any key to continue"
-read -s -n1  cont
-	case $cont in
-    	*) ../table_menu.sh;;
- 	esac 
-}
-
-
 #Enter name of database and check if it exists.
+database_name=$(zenity --entry \
+    --width 500 \
+    --title "Create Database" \
+    --text "Enter Database Name to Create:")
+#echo -e $(blueprint "Enter Database Name to Create: ")
+#read database_name
 
-echo -e $(blueprint "Enter Database Name to Create: ")
-read database_name
-if [[  -d $database_name ]]; then
+if [[ -d $database_name ]]; then
     clear
-    echo -e $(redprint "Database with name $database_name already exists")
+    zenity --warning \ --title "Duplicated database name" \
+        --width 500 \
+        --height 100 \
+        --text "Database with name $database_name already exists"
+    #echo -e $(redprint "Database with name $database_name already exists")
 
-    . ./create_database.sh
-
+    . ./database_menu.sh
 
 #If database name entered doesn't exist then create database.
 else
-    mkdir $database_name
-    echo -e $(yellowprint "Your DataBase $database_name sucessfully created")
-    echo -ne $(blueprint "Would you like to connect to $database_name DataBase?
-    press (y) to connect Or any key to go back : ")
-    read confirmation
-
-    case $confirmation in
-
-    'y')
+    if [[ ! "$database_name" =~ ^[[:alpha:]][[:alnum:]]*$ ]]; then
         clear
-        cd $database_name
-        connected_successfully
-        ;;
-    'Y')
+        echo $(yellowprint "Database Name can not be empty or have any symbols, and must start with letter")
+        zenity --warning \ --title "Error in format" \
+            --width 500 \
+            --height 100 \
+            --text "Database Name can not be empty or have any symbols, and must start with letter"
+            clear
+            sleep 0.2
+            . ./database_menu.sh
+       
+       
+    else
+        mkdir $database_name
+        echo -e $(yellowprint "Your DataBase $database_name sucessfully created")
+        zenity --info \
+       --title "Info Message" \
+       --width 500 \
+       --height 100 \
+       --text "Your DataBase $database_name sucessfully created."
+        sleep 0.2
         clear
-        cd $database_name
-        connected_successfully
-        ;;
-    *)back 
-    . ./database_menu.sh
- 	esac
+        . ./database_menu.sh
+
+    fi
 fi

@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 source ./colors.sh
-
+zenity --notification --text "Welcome to our project"
 clear
 main_menu() {
-  echo -e  "\n"              
-  echo -e  "\n"              
-  echo -e  "$(greenprint  ' \t\t     *   *   *  ******  *    *****    *****   *     *  ****** ' )"  
-  echo -e  "$(redprint  ' \t\t     *   *   *  *       *    *       *     *  **   **  *      ' )" 
-  echo -e  "$(blueprint  ' \t\t     *  * *  *  ******  *    *       *     *  * * * *  ****** ' )"
-  echo -e  "$(yellowprint  ' \t\t     * *   * *  *       *    *       *     *  *  *  *  *      ' )" 
-  echo -e  "$(cyanprint  ' \t\t     *       *  ******  ***  *****    *****   *     *  ****** ' )"
-  echo -e  "\n" 
- 
-
-echo -ne "
+    echo -e "\n"
+    echo -e "\n"
+    echo -e "$(greenprint ' \t\t     *   *   *  ******  *    *****    *****   *     *  ****** ')"
+    echo -e "$(redprint ' \t\t     *   *   *  *       *    *       *     *  **   **  *      ')"
+    echo -e "$(blueprint ' \t\t     *  * *  *  ******  *    *       *     *  * * * *  ****** ')"
+    echo -e "$(yellowprint ' \t\t     * *   * *  *       *    *       *     *  *  *  *  *      ')"
+    echo -e "$(cyanprint ' \t\t     *       *  ******  ***  *****    *****   *     *  ****** ')"
+    echo -e "\n"
+    echo -ne "
 \n\t$(blueprint '\t\t*********** WELCOME TO OUR PROJECT ***********')
 \n\t\t$(greenprint '\t\t\t1)') RUN PROJECT
 \n\t\t$(cyanprint '\t\t\t2)') ABOUT  
@@ -36,11 +34,7 @@ echo -ne "
     *)
         clear
         . ./main_menu.sh
-        ;; 
+        ;;
     esac
-
-
-    
 }
 main_menu
-

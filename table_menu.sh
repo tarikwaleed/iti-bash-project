@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 source ./colors.sh
-
 clear
 table_menu() {
     echo -ne "
 $(yellowprint '\t\t*********** table_menu ***********')
 \n$(redprint '\t\t\t1)') CREATE TABLE
 \n$(blueprint '\t\t\t2)') SHOW TABLES
-\n$(greenprint '\t\t\t3)') ADD TABLE
+\n$(greenprint '\t\t\t3)') INSERT INTO TABLE
 \n$(redprint '\t\t\t4)') UPDATE TABLE
 \n$(blueprint '\t\t\t5)') DROP TABLE
 \n$(greenprint '\t\t\t6)') SELECT FROM TABLE
@@ -31,31 +30,28 @@ $(yellowprint '\t\t*********** table_menu ***********')
         ;;
     3)
         clear
-        
-        table_menu
+        . ./insert_into_table ### not finished
         ;;
     4)
         clear
-        
-        table_menu
+        . ./update_table.sh ### not finished
         ;;
     5)
         clear
-        
-        table_menu
+        . ./drop_table.sh ### not finished
         ;;
     6)
         clear
-        
+        . ./select_from_table.sh #where conditon not finished
         table_menu
         ;;
     7)
         clear
-        
+        . ./database_menu.sh
         ;;
     8)
         clear
-        
+        . ./main_menu.sh
         ;;
     0)
         clear
@@ -67,5 +63,4 @@ $(yellowprint '\t\t*********** table_menu ***********')
         ;;
     esac
 }
-
 table_menu

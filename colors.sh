@@ -13,8 +13,5 @@ redprint() { printf "${RED}%s${RESET}\n" "$1"; }
 yellowprint() { printf "${YELLOW}%s${RESET}\n" "$1"; }
 magentaprint() { printf "${MAGENTA}%s${RESET}\n" "$1"; }
 cyanprint() { printf "${CYAN}%s${RESET}\n" "$1"; }
-db_created() { echo; echo "DataBase created"; }
-db_connected() { echo; echo "Connected to DataBase."; }
-fn_bye() { echo "Bye bye."; exit 0; }
-fn_fail() { echo "Wrong option."; exit 1; }
+fn_bye() { echo "Bye bye."; sleep 0.6; exit 0; }
 back_to(){ cd .. ;}
