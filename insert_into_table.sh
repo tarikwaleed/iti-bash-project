@@ -27,13 +27,14 @@ function get_column_type_by_index() {
 all_columns_types=()
 all_columns_names=()
 all_columns_keys=()
-function get_columns_metadata() {
-    file_name=$1.metadata
+function main_logic() {
+    metadata_file=$1.metadata
+    data_file=$1.data
     number_of_columns=$(get_number_of_columns $1)
     declare -i count=0
     while [[ count -lt number_of_columns ]]; do
         # get every line
-        column=$(head -$(($count + 1)) $file_name | tail -1)
+        column=$(head -$(($count + 1)) $metadata_file | tail -1)
         column_name=$(echo $column | cut -d: -f1)
         column_type=$(echo $column | cut -d: -f2)
         column_key=$(echo $column | cut -d: -f3)
@@ -66,8 +67,8 @@ function get_columns_metadata() {
                         valid_input=1
                     fi
 
-                elif [[ ! $column_data =~ ^[[:alpha:]][[:alnum:]]*$ ]]; then
-                    echo "Invalid input, provided data should be of type string"
+                elif [[ ! $column_data =~ ^[[:alpha:]]*$ ]]; then
+                    echo "Invalid input, provided data should be of type string [NO white spaces allowed]"
                     valid_input=0
                 else
                     valid_input=1
@@ -75,15 +76,19 @@ function get_columns_metadata() {
 
             fi
         done
-
         row_data+=($column_data)
     done
+    # kda we've got all the data, and it's valid inshallah
+    temp=${row_data[@]}
 
-    echo ${row_data[@]}
+    #substiture every occurence of white space with colon
+    final_record=${temp// /:}
+    echo $final_record >>$data_file
+    echo "Row inserted successfully"
 
 }
 
-get_columns_metadata $1
+main_logic $1
 # echo ${all_columns_names[@]}
 # echo ${all_columns_types[@]}
 # echo ${all_columns_keys[@]}
